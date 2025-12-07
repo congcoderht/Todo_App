@@ -1,6 +1,45 @@
 @TaskAPI_HostAddress = http://localhost:5268
 
-GET {{TaskAPI_HostAddress}}/weatherforecast/
+### Get all tasks
+GET {{TaskAPI_HostAddress}}/api/Task
 Accept: application/json
 
-###
+### Get tasks by status (Đang làm - false)
+GET {{TaskAPI_HostAddress}}/api/Task?isCompleted=false
+Accept: application/json
+
+### Get tasks by status (Hoàn thành - true)
+GET {{TaskAPI_HostAddress}}/api/Task?isCompleted=true
+Accept: application/json
+
+### Get task by ID
+GET {{TaskAPI_HostAddress}}/api/Task/1
+Accept: application/json
+
+### Create new task
+POST {{TaskAPI_HostAddress}}/api/Task
+Content-Type: application/json
+
+{
+  "title": "Task mới",
+  "description": "",
+  "dueDate": "2024-04-25T00:00:00",
+  "isCompleted": false,
+  "isImportant": false
+}
+
+### Update task
+PUT {{TaskAPI_HostAddress}}/api/Task/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "title": "Task đã cập nhật",
+  "description": "",
+  "dueDate": "2024-04-25T00:00:00",
+  "isCompleted": true,
+  "isImportant": false
+}
+
+### Delete task
+DELETE {{TaskAPI_HostAddress}}/api/Task/1
